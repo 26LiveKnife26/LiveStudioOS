@@ -80,7 +80,7 @@ ISP: {response.get('isp')}
     process = psutil.Process()
     memory_info = process.memory_info()
     rss = memory_info.rss
-    os_used = ft.Text("", size = 20)
+    os_used = ft.TextButton(text = "")
     app.add(
         ft.Row(
             [
@@ -118,20 +118,10 @@ ISP: {response.get('isp')}
             else:
                 wifi.icon = ft.icons.WIFI_OFF
                 exit("!!!YOU NOT CONNECTED TO WIFI!!")
-            os_used.value = f"𝙊𝙎 𝙐𝙎𝙀𝘿 {rss / (1024 * 1024):.2f} 𝙈𝘽   ;   𝙍𝘼𝙈 𝙐𝙎𝙀𝘿 {psutil.virtual_memory().used / (1024 ** 2):.2f} 𝙈𝘽 / {psutil.virtual_memory().total / (1024 ** 2):.2f} 𝙈𝘽"
+            os_used.text = f"𝙊𝙎 𝙐𝙎𝙀𝘿 {rss / (1024 * 1024):.2f} 𝙈𝘽"
             response = requests.get(url=f'http://ip-api.com/json/').json()
-            user_inform.value = f"""Ваша информация:
-IP: {response.get('query')}
-Регион времени: {response.get('timezone')}
-Организация: {response.get('org')}
-Провайдер: {response.get('as')}
-ISP: {response.get('isp')}
-Город: {response.get('city')}
-Страна: {response.get('country')}
-Почтовый индекс: {response.get('zip')}
-Долгота: {response.get('lat')}
-Ширина: {response.get('lon')}"""
             app.update()
     UPDATE_WHILE_TRUE()
 print("SYSTEM IS READY!")
 ft.app(target = main)
+# 𝙍𝘼𝙈 𝙐𝙎𝙀𝘿 {psutil.virtual_memory().used / (1024 ** 2):.2f} 𝙈𝘽 / {psutil.virtual_memory().total / (1024 ** 2):.2f} 𝙈𝘽
