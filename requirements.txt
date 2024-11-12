@@ -1,0 +1,5 @@
+pybluez2
+requests
+pynput
+psutil
+flet
